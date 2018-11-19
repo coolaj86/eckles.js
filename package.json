@@ -1,0 +1,34 @@
+{
+  "name": "eckles",
+  "version": "0.1.0",
+  "description": "A focused, zero-dependency library for perfect universal ECDSA P-256 (prime256v1, secp256r1) and P-384 (secp384r1) support.",
+  "main": "index.js",
+  "bin": {
+    "eckles": "bin/eckles.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "postinstall": "node lib/telemetry.js event:install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coolaj86.com/coolaj86/eckles.js"
+  },
+  "keywords": [
+    "zero-dependency",
+    "ec",
+    "ecdsa",
+    "jwk",
+    "pem",
+    "p-256",
+    "p-384",
+    "prime256v1",
+    "secp256r1",
+    "secp384r1"
+  ],
+  "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",
+  "license": "MPL-2.0"
+}
