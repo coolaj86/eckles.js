@@ -37,6 +37,7 @@ eckles.exportSEC1(jwk).then(function (pem) {
 Goals
 -----
 
+* Zero Dependencies
 * Focused support for P-256 and P-384, which are already universally supported.
 * Convert both ways
 * Browser support as well
