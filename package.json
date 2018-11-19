@@ -1,6 +1,6 @@
 {
   "name": "eckles",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A focused, zero-dependency library for perfect universal ECDSA P-256 (prime256v1, secp256r1) and P-384 (secp384r1) support.",
   "main": "index.js",
   "bin": {

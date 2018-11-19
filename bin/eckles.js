@@ -10,5 +10,5 @@ var infile = process.argv[2];
 var keypem = fs.readFileSync(infile, 'ascii');
 
 eckles.import({ pem: keypem }).then(function (jwk) {
-  console.log(jwk);
+  console.log(JSON.stringify(jwk, null, 2));
 });

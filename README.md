@@ -13,8 +13,20 @@ ECDSA tools. Lightweight. Zero Dependencies. Universal compatibility.
 * PEM-to-JWK
 
 ```js
+var eckles = require('eckles');
+var pem = require('fs').readFileSync('./fixtures/privkey-ec-p256.sec1.pem', 'ascii')
+
 eckles.import({ pem: pem }).then(function (jwk) {
   console.log(jwk);
+  /*
+  {
+    "kty": "EC",
+    "crv": "P-256",
+    "d": "iYydo27aNGO9DBUWeGEPD8oNi1LZDqfxPmQlieLBjVQ",
+    "x": "IT1SWLxsacPiE5Z16jkopAn8_-85rMjgyCokrnjDft4",
+    "y": "mP2JwOAOdMmXuwpxbKng3KZz27mz-nKWIlXJ3rzSGMo"
+  }
+  */
 });
 ```
 
