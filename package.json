@@ -1,7 +1,8 @@
 {
   "name": "eckles",
-  "version": "0.7.0",
-  "description": "A focused, zero-dependency library for perfect universal ECDSA P-256 (prime256v1, secp256r1) and P-384 (secp384r1) support.",
+  "version": "0.7.1",
+  "description": "PEM-to-JWK and JWK-to-PEM for ECDSA keys in a lightweight, zero-dependency library focused on perfect universal compatibility.",
+  "homepage": "https://git.coolaj86.com/coolaj86/eckles.js",
   "main": "index.js",
   "bin": {
     "eckles": "bin/eckles.js"
@@ -19,14 +20,14 @@
   },
   "keywords": [
     "zero-dependency",
-    "ec",
-    "ecdsa",
-    "jwk",
-    "pem",
+    "JWK-to-PEM",
+    "PEM-to-JWK",
+    "ECDSA",
+    "EC",
     "p-256",
-    "p-384",
     "prime256v1",
     "secp256r1",
+    "p-384",
     "secp384r1"
   ],
   "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",

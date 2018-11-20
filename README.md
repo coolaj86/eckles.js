@@ -8,9 +8,11 @@ ECDSA tools. Lightweight. Zero Dependencies. Universal compatibility.
 
 * P-256 (prime256v1, secp256r1)
 * P-384 (secp384r1)
+* SPKI/PKIX
 * PKCS#8
 * SEC1/X9.62
 * PEM-to-JWK
+* JWK-to-PEM
 
 ```js
 var eckles = require('eckles');
@@ -30,7 +32,6 @@ eckles.import({ pem: pem }).then(function (jwk) {
 });
 ```
 
-<!--
 ```js
 eckles.export({ jwk: jwk }).then(function (pem) {
   // PEM in pkcs#8 format
@@ -38,6 +39,7 @@ eckles.export({ jwk: jwk }).then(function (pem) {
 });
 ```
 
+<!--
 ```js
 eckles.exportSEC1(jwk).then(function (pem) {
   // PEM in sec1 (x9.62) format
