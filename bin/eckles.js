@@ -16,7 +16,8 @@ try {
 }
 
 if ('string' === typeof key) {
-  eckles.import({ pem: key }).then(function (jwk) {
+  var pub = (-1 !== [ 'public', 'spki', 'pkix' ].indexOf(format));
+  eckles.import({ pem: key, public: (pub || format) }).then(function (jwk) {
     console.log(JSON.stringify(jwk, null, 2));
   }).catch(function (err) {
     console.error(err);
