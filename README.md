@@ -1,10 +1,18 @@
 eckles.js
 =========
 
+Sponsored by [Root](https://therootcompany.com).
+Built for [ACME.js](https://git.coolaj86.com/coolaj86/acme.js)
+and [Greenlock.js](https://git.coolaj86.com/coolaj86/greenlock.js)
+
 ECDSA (elliptic curve) tools. Lightweight. Zero Dependencies. Universal compatibility.
 
 * [x] PEM-to-JWK
 * [x] JWK-to-PEM
+
+This project is fully functional and tested (and the code is pretty clean).
+
+It is considered to be complete, but if you find a bug please open an issue.
 
 ## PEM-to-JWK
 
@@ -13,7 +21,8 @@ ECDSA (elliptic curve) tools. Lightweight. Zero Dependencies. Universal compatib
 
 ```js
 var eckles = require('eckles');
-var pem = require('fs').readFileSync('eckles/fixtures/privkey-ec-p256.sec1.pem', 'ascii');
+var pem = require('fs')
+  .readFileSync('./node_modles/eckles/fixtures/privkey-ec-p256.sec1.pem', 'ascii');
 
 eckles.import({ pem: pem }).then(function (jwk) {
   console.log(jwk);
@@ -53,7 +62,7 @@ yZe7CnFsqeDcpnPbubP6cpYiVcnevNIYyg==
 -----END EC PRIVATE KEY-----
 ```
 
-#### Advanced
+### Advanced Options
 
 `format: 'pkcs8'`:
 
@@ -80,10 +89,18 @@ eckles.export({ jwk: jwk, public: true }).then(function (pem) {
 });
 ```
 
-Goals
+Goals of this project
 -----
 
 * Zero Dependencies
 * Focused support for P-256 and P-384, which are already universally supported.
 * Convert both ways
-* Browser support as well
+* Browser support as well (TODO)
+
+Legal
+-----
+
+Licensed MPL-2.0
+
+[Terms of Use](https://therootcompany.com/legal/#terms) |
+[Privacy Policy](https://therootcompany.com/legal/#privacy)
