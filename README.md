@@ -43,6 +43,7 @@ eckles.import({ pem: pem }).then(function (jwk) {
 
 * [x] SEC1/X9.62, PKCS#8, SPKI/PKIX
 * [x] P-256 (prime256v1, secp256r1), P-384 (secp384r1)
+* [x] SSH (RFC4716), (RFC 4716/SSH2)
 
 ```js
 var eckles = require('eckles');
@@ -73,6 +74,22 @@ Use `format: 'pkcs8'` to output in PKCS#8 format instead.
 eckles.export({ jwk: jwk, format: 'pkcs8' }).then(function (pem) {
   // PEM in PKCS#8 format
   console.log(pem);
+});
+```
+
+`format: 'ssh'`:
+
+Although SSH uses SEC1 for private keys, it uses ts own special non-ASN1 format
+(affectionately known as rfc4716) for public keys. I got curious and then decided
+to add this format as well.
+
+To get the same format as you
+would get with `ssh-keygen`, pass `ssh` as the format option:
+
+```js
+eckles.export({ jwk: jwk, format: 'ssh' }).then(function (pub) {
+  // Special SSH2 Public Key format (RFC 4716)
+  console.log(pub);
 });
 ```
 
