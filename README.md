@@ -77,6 +77,14 @@ eckles.export({ jwk: jwk, format: 'pkcs8' }).then(function (pem) {
 });
 ```
 
+```
+-----BEGIN EC PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgiYydo27aNGO9DBUW
+eGEPD8oNi1LZDqfxPmQlieLBjVShRANCAAQhPVJYvGxpw+ITlnXqOSikCfz/7zms
+yODIKiSueMN+3pj9icDgDnTJl7sKcWyp4Nymc9u5s/pyliJVyd680hjK
+-----END EC PRIVATE KEY-----
+```
+
 `format: 'ssh'`:
 
 Although SSH uses SEC1 for private keys, it uses ts own special non-ASN1 format
@@ -93,6 +101,10 @@ eckles.export({ jwk: jwk, format: 'ssh' }).then(function (pub) {
 });
 ```
 
+```
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCE9Uli8bGnD4hOWdeo5KKQJ/P/vOazI4MgqJK54w37emP2JwOAOdMmXuwpxbKng3KZz27mz+nKWIlXJ3rzSGMo= P-256@localhost
+```
+
 `public: 'true'`:
 
 If a private key is used as input, a private key will be output.
@@ -104,6 +116,13 @@ eckles.export({ jwk: jwk, public: true }).then(function (pem) {
   // PEM in SPKI/PKIX format
   console.log(pem);
 });
+```
+
+```
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIT1SWLxsacPiE5Z16jkopAn8/+85
+rMjgyCokrnjDft6Y/YnA4A50yZe7CnFsqeDcpnPbubP6cpYiVcnevNIYyg==
+-----END PUBLIC KEY-----
 ```
 
 Goals of this project
