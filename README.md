@@ -127,6 +127,27 @@ rMjgyCokrnjDft6Y/YnA4A50yZe7CnFsqeDcpnPbubP6cpYiVcnevNIYyg==
 -----END PUBLIC KEY-----
 ```
 
+Testing
+-------
+
+All cases are tested in `test.sh`.
+
+You can compare these keys to the ones that you get from OpenSSL, ssh-keygen, and WebCrypto:
+
+```bash
+# Generate EC P-256 Keypair
+openssl ecparam -genkey -name prime256v1 -noout -out ./privkey-ec-p256.sec1.pem
+
+# Export Public-only EC Key (as SPKI)
+openssl ec -in ./privkey-ec-p256.sec1.pem -pubout -out ./pub-ec-p256.spki.pem
+
+# Convert SEC1 (traditional) EC Keypair to PKCS8 format
+openssl pkcs8 -topk8 -nocrypt -in ./privkey-ec-p256.sec1.pem -out ./privkey-ec-p256.pkcs8.pem
+
+# Convert EC public key to SSH format
+ssh-keygen -f ./pub-ec-p256.spki.pem -i -mPKCS8 > ./pub-ec-p256.ssh.pub
+```
+
 Goals of this project
 -----
 
@@ -134,6 +155,7 @@ Goals of this project
 * Focused support for P-256 and P-384, which are already universally supported.
 * Convert both ways
 * Browser support as well (TODO)
+* OpenSSL, ssh-keygen, and WebCrypto compatibility
 
 Legal
 -----
