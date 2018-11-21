@@ -11,6 +11,10 @@ node bin/eckles.js fixtures/privkey-ec-p256.pkcs8.pem | tee fixtures/privkey-ec-
 diff fixtures/privkey-ec-p256.jwk.json fixtures/privkey-ec-p256.jwk.2
 node bin/eckles.js fixtures/pub-ec-p256.spki.pem | tee fixtures/pub-ec-p256.jwk.2
 diff fixtures/pub-ec-p256.jwk.json fixtures/pub-ec-p256.jwk.2
+#
+node bin/eckles.js fixtures/pub-ec-p256.ssh.pub | tee fixtures/pub-ec-p256.jwk.2
+diff fixtures/pub-ec-p256.jwk.2 fixtures/pub-ec-p256.jwk.2
+
 
 echo ""
 echo ""
@@ -22,6 +26,10 @@ node bin/eckles.js fixtures/privkey-ec-p384.pkcs8.pem | tee fixtures/privkey-ec-
 diff fixtures/privkey-ec-p384.jwk.json fixtures/privkey-ec-p384.jwk.2.2
 node bin/eckles.js fixtures/pub-ec-p384.spki.pem | tee fixtures/pub-ec-p384.jwk.2
 diff fixtures/pub-ec-p384.jwk.json fixtures/pub-ec-p384.jwk.2
+#
+node bin/eckles.js fixtures/pub-ec-p384.ssh.pub | tee fixtures/pub-ec-p384.jwk.2
+diff fixtures/pub-ec-p384.jwk.2 fixtures/pub-ec-p384.jwk.2
+
 
 echo ""
 echo ""
@@ -38,6 +46,7 @@ diff fixtures/pub-ec-p256.spki.pem fixtures/pub-ec-p256.spki.pem.2
 # ssh-keygen -f fixtures/pub-ec-p256.spki.pem -i -mPKCS8 > fixtures/pub-ec-p256.ssh.pub
 node bin/eckles.js fixtures/pub-ec-p256.jwk.json ssh | tee fixtures/pub-ec-p256.ssh.pub.2
 diff fixtures/pub-ec-p256.ssh.pub fixtures/pub-ec-p256.ssh.pub.2
+
 
 echo ""
 echo ""

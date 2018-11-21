@@ -9,6 +9,7 @@ ECDSA (elliptic curve) tools. Lightweight. Zero Dependencies. Universal compatib
 
 * [x] PEM-to-JWK
 * [x] JWK-to-PEM
+* [x] SSH "pub" format
 
 This project is fully functional and tested (and the code is pretty clean).
 
@@ -18,6 +19,7 @@ It is considered to be complete, but if you find a bug please open an issue.
 
 * [x] SEC1/X9.62, PKCS#8, SPKI/PKIX
 * [x] P-256 (prime256v1, secp256r1), P-384 (secp384r1)
+* [x] SSH (RFC4716), (RFC 4716/SSH2)
 
 ```js
 var eckles = require('eckles');
