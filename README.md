@@ -80,11 +80,11 @@ eckles.export({ jwk: jwk, format: 'pkcs8' }).then(function (pem) {
 ```
 
 ```
------BEGIN EC PRIVATE KEY-----
+-----BEGIN PRIVATE KEY-----
 MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgiYydo27aNGO9DBUW
 eGEPD8oNi1LZDqfxPmQlieLBjVShRANCAAQhPVJYvGxpw+ITlnXqOSikCfz/7zms
 yODIKiSueMN+3pj9icDgDnTJl7sKcWyp4Nymc9u5s/pyliJVyd680hjK
------END EC PRIVATE KEY-----
+-----END PRIVATE KEY-----
 ```
 
 `format: 'ssh'`:
