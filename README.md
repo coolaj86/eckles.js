@@ -1,3 +1,8 @@
+Mirror of Eckles.js
+===================
+
+Official Repository: <https://git.coolaj86.com/coolaj86/eckles.js>
+
 [Eckles.js](https://git.coolaj86.com/coolaj86/eckles.js)
 =========
 
