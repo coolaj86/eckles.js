@@ -14,6 +14,7 @@ ECDSA (elliptic curve) tools. Lightweight. Zero Dependencies. Universal compatib
 * [x] JWK-to-PEM
 * [x] SSH "pub" format
 * [x] CLI
+  * See [Eckles CLI](https://git.coolaj86.com/coolaj86/eckles-cli.js)
 * [ ] RSA
   * **Need RSA tools?** Check out [Rasha.js](https://git.coolaj86.com/coolaj86/rasha.js)
 
@@ -30,6 +31,8 @@ CLI:
 ```bash
 npm install -g eckles
 ```
+
+See [Eckles CLI](https://git.coolaj86.com/coolaj86/eckles-cli.js)
 
 ## Generate EC (ECDSA/ECDH) Key
 
@@ -61,17 +64,6 @@ Eckles.generate({ format: 'jwk' }).then(function (keypair) {
     * A) because they're a senseless waste
     * B) they have similar, but slightly different formats
 
-#### Generate EC Key CLI
-
-```bash
-# Generate a key in each format
-# eckles [format] [curve|encoding]
-eckles jwk
-eckles sec1 pem
-eckles pkcs8 der
-eckles ssh P-256
-```
-
 ## PEM-to-JWK
 
 * [x] SEC1/X9.62, PKCS#8, SPKI/PKIX
@@ -98,17 +90,6 @@ Eckles.import({ pem: pem }).then(function (jwk) {
 }
 ```
 
-#### EC PEM to JWK CLI
-
-```bash
-# Convert SEC1, PKCS8, SPKI, SSH to JWK
-# eckles [keyfile]
-eckles node_modules/eckles/fixtures/privkey-ec-p256.sec1.pem
-eckles node_modules/eckles/fixtures/privkey-ec-p384.pkcs8.pem
-eckles node_modules/eckles/fixtures/pub-ec-p256.spki.pem
-eckles node_modules/eckles/fixtures/pub-ec-p384.ssh.pub
-```
-
 ## JWK-to-PEM
 
 * [x] SEC1/X9.62, PKCS#8, SPKI/PKIX
@@ -131,17 +112,6 @@ MHcCAQEEIImMnaNu2jRjvQwVFnhhDw/KDYtS2Q6n8T5kJYniwY1UoAoGCCqGSM49
 AwEHoUQDQgAEIT1SWLxsacPiE5Z16jkopAn8/+85rMjgyCokrnjDft6Y/YnA4A50
 yZe7CnFsqeDcpnPbubP6cpYiVcnevNIYyg==
 -----END EC PRIVATE KEY-----
-```
-
-#### EC PEM to JWK CLI
-
-```bash
-# Convert JWK to SEC1, PKCS8, SPKI, SSH
-# eckles [keyfile] [format]
-eckles node_modules/eckles/fixtures/privkey-ec-p256.jwk.json sec1
-eckles node_modules/eckles/fixtures/privkey-ec-p384.jwk.json pkcs8
-eckles node_modules/eckles/fixtures/pub-ec-p256.jwk.json spki
-eckles node_modules/eckles/fixtures/pub-ec-p384.jwk.json ssh
 ```
 
 ### Advanced Options
