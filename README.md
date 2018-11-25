@@ -1,19 +1,76 @@
-eckles.js
+[Eckles.js](https://git.coolaj86.com/coolaj86/eckles.js)
 =========
 
 Sponsored by [Root](https://therootcompany.com).
 Built for [ACME.js](https://git.coolaj86.com/coolaj86/acme.js)
 and [Greenlock.js](https://git.coolaj86.com/coolaj86/greenlock.js)
 
+| < 600 lines of code | 3kb gzipped | 10kb minified | 17kb with comments |
+
 ECDSA (elliptic curve) tools. Lightweight. Zero Dependencies. Universal compatibility.
 
+* [x] Fast and Easy EC Key Generation
 * [x] PEM-to-JWK
 * [x] JWK-to-PEM
 * [x] SSH "pub" format
+* [x] CLI
+* [ ] RSA
+  * **Need RSA tools?** Check out [Rasha.js](https://git.coolaj86.com/coolaj86/rasha.js)
 
-This project is fully functional and tested (and the code is pretty clean).
+## Install
 
-It is considered to be complete, but if you find a bug please open an issue.
+For node.js:
+
+```bash
+npm install --save eckles
+```
+
+CLI:
+
+```bash
+npm install -g eckles
+```
+
+## Generate EC (ECDSA/ECDH) Key
+
+Achieves the *fastest possible key generation* using node's native EC bindings to OpenSSL,
+then converts to JWK for ease-of-use.
+
+```js
+Eckles.generate({ format: 'jwk' }).then(function (keypair) {
+  console.log(keypair.private);
+  console.log(keypair.public);
+});
+```
+
+**options**
+
+* `format` defaults to `'jwk'`
+  * `'sec1'` (traditional)
+  * `'pkcs8'`
+  * `'ssh'`
+* `encoding` defaults to `'json'`
+  * `'pem'` (type + DER.toString('base64'))
+  * `'der'`
+
+**advanced options**
+
+* `namedCurve` defaults to `'P-256'`
+  * `P-384` is also supported
+  * larger keys have not been implemented
+    * A) because they're a senseless waste
+    * B) they have similar, but slightly different formats
+
+#### Generate EC Key CLI
+
+```bash
+# Generate a key in each format
+# eckles [format] [curve|encoding]
+eckles jwk
+eckles sec1 pem
+eckles pkcs8 der
+eckles ssh P-256
+```
 
 ## PEM-to-JWK
 
@@ -22,11 +79,11 @@ It is considered to be complete, but if you find a bug please open an issue.
 * [x] SSH (RFC4716), (RFC 4716/SSH2)
 
 ```js
-var eckles = require('eckles');
+var Eckles = require('eckles');
 var pem = require('fs')
   .readFileSync('./node_modles/eckles/fixtures/privkey-ec-p256.sec1.pem', 'ascii');
 
-eckles.import({ pem: pem }).then(function (jwk) {
+Eckles.import({ pem: pem }).then(function (jwk) {
   console.log(jwk);
 });
 ```
@@ -41,6 +98,17 @@ eckles.import({ pem: pem }).then(function (jwk) {
 }
 ```
 
+#### EC PEM to JWK CLI
+
+```bash
+# Convert SEC1, PKCS8, SPKI, SSH to JWK
+# eckles [keyfile]
+eckles node_modules/eckles/fixtures/privkey-ec-p256.sec1.pem
+eckles node_modules/eckles/fixtures/privkey-ec-p384.pkcs8.pem
+eckles node_modules/eckles/fixtures/pub-ec-p256.spki.pem
+eckles node_modules/eckles/fixtures/pub-ec-p384.ssh.pub
+```
+
 ## JWK-to-PEM
 
 * [x] SEC1/X9.62, PKCS#8, SPKI/PKIX
@@ -48,10 +116,10 @@ eckles.import({ pem: pem }).then(function (jwk) {
 * [x] SSH (RFC4716), (RFC 4716/SSH2)
 
 ```js
-var eckles = require('eckles');
+var Eckles = require('eckles');
 var jwk = require('eckles/fixtures/privkey-ec-p256.jwk.json');
 
-eckles.export({ jwk: jwk }).then(function (pem) {
+Eckles.export({ jwk: jwk }).then(function (pem) {
   // PEM in SEC1 (x9.62) format
   console.log(pem);
 });
@@ -65,6 +133,17 @@ yZe7CnFsqeDcpnPbubP6cpYiVcnevNIYyg==
 -----END EC PRIVATE KEY-----
 ```
 
+#### EC PEM to JWK CLI
+
+```bash
+# Convert JWK to SEC1, PKCS8, SPKI, SSH
+# eckles [keyfile] [format]
+eckles node_modules/eckles/fixtures/privkey-ec-p256.jwk.json sec1
+eckles node_modules/eckles/fixtures/privkey-ec-p384.jwk.json pkcs8
+eckles node_modules/eckles/fixtures/pub-ec-p256.jwk.json spki
+eckles node_modules/eckles/fixtures/pub-ec-p384.jwk.json ssh
+```
+
 ### Advanced Options
 
 `format: 'pkcs8'`:
@@ -73,7 +152,7 @@ The default output format is `sec1`/`x9.62` (EC-specific format) is used for pri
 Use `format: 'pkcs8'` to output in PKCS#8 format instead.
 
 ```js
-eckles.export({ jwk: jwk, format: 'pkcs8' }).then(function (pem) {
+Eckles.export({ jwk: jwk, format: 'pkcs8' }).then(function (pem) {
   // PEM in PKCS#8 format
   console.log(pem);
 });
@@ -97,7 +176,7 @@ To get the same format as you
 would get with `ssh-keygen`, pass `ssh` as the format option:
 
 ```js
-eckles.export({ jwk: jwk, format: 'ssh' }).then(function (pub) {
+Eckles.export({ jwk: jwk, format: 'ssh' }).then(function (pub) {
   // Special SSH2 Public Key format (RFC 4716)
   console.log(pub);
 });
@@ -114,7 +193,7 @@ If a private key is used as input, a private key will be output.
 If you'd like to output a public key instead you can pass `public: true` or `format: 'spki'`.
 
 ```js
-eckles.export({ jwk: jwk, public: true }).then(function (pem) {
+Eckles.export({ jwk: jwk, public: true }).then(function (pem) {
   // PEM in SPKI/PKIX format
   console.log(pem);
 });
@@ -160,7 +239,7 @@ Goals of this project
 Legal
 -----
 
-Licensed MPL-2.0
-
+[Eckles.js](https://git.coolaj86.com/coolaj86/eckles.js) |
+MPL-2.0 |
 [Terms of Use](https://therootcompany.com/legal/#terms) |
 [Privacy Policy](https://therootcompany.com/legal/#privacy)

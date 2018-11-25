@@ -2,10 +2,34 @@
 'use strict';
 
 var fs = require('fs');
-var eckles = require('../index.js');
+var Eckles = require('../index.js');
 
 var infile = process.argv[2];
 var format = process.argv[3];
+
+if (!infile) {
+  infile = 'jwk';
+}
+
+if (-1 !== [ 'jwk', 'pem', 'json', 'der', 'sec1', 'pkcs8', 'spki', 'ssh' ].indexOf(infile)) {
+  console.log("Generating new key...");
+  Eckles.generate({
+    format: infile
+  , namedCurve: format === 'P-384' ? 'P-384' : 'P-256'
+  , encoding: format === 'der' ? 'der' : 'pem'
+  }).then(function (key) {
+    if ('der' === infile || 'der' === format) {
+      key.private = key.private.toString('binary');
+      key.public = key.public.toString('binary');
+    }
+    console.log(key.private);
+    console.log(key.public);
+  }).catch(function (err) {
+    console.error(err);
+    process.exit(1);
+  });
+  return;
+}
 
 var key = fs.readFileSync(infile, 'ascii');
 
@@ -17,14 +41,14 @@ try {
 
 if ('string' === typeof key) {
   var pub = (-1 !== [ 'public', 'spki', 'pkix' ].indexOf(format));
-  eckles.import({ pem: key, public: (pub || format) }).then(function (jwk) {
+  Eckles.import({ pem: key, public: (pub || format) }).then(function (jwk) {
     console.log(JSON.stringify(jwk, null, 2));
   }).catch(function (err) {
     console.error(err);
     process.exit(1);
   });
 } else {
-  eckles.export({ jwk: key, format: format }).then(function (pem) {
+  Eckles.export({ jwk: key, format: format }).then(function (pem) {
     console.log(pem);
   }).catch(function (err) {
     console.error(err);
