@@ -1,6 +1,6 @@
 {
   "name": "eckles",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "💯 PEM-to-JWK and JWK-to-PEM (and SSH) for ECDSA keys in a lightweight, zero-dependency library focused on perfect universal compatibility.",
   "homepage": "https://git.coolaj86.com/coolaj86/eckles.js",
   "main": "index.js",

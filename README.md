@@ -12,6 +12,7 @@ ECDSA (elliptic curve) tools. Lightweight. Zero Dependencies. Universal compatib
 * [x] Fast and Easy EC Key Generation
 * [x] PEM-to-JWK
 * [x] JWK-to-PEM
+* [x] JWK thumbprint
 * [x] SSH "pub" format
 * [x] CLI
   * See [Eckles CLI](https://git.coolaj86.com/coolaj86/eckles-cli.js)
@@ -174,6 +175,14 @@ Eckles.export({ jwk: jwk, public: true }).then(function (pem) {
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIT1SWLxsacPiE5Z16jkopAn8/+85
 rMjgyCokrnjDft6Y/YnA4A50yZe7CnFsqeDcpnPbubP6cpYiVcnevNIYyg==
 -----END PUBLIC KEY-----
+```
+
+## JWK Thumbprint
+
+```js
+Eckles.thumbprint({ jwk: jwk }).then(function (thumbprint) {
+  console.log(thumbprint);
+});
 ```
 
 Testing

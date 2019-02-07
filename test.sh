@@ -118,6 +118,12 @@ node bin/eckles.js pkcs8 > /dev/null
 node bin/eckles.js ssh #> /dev/null
 echo "PASS"
 
+echo ""
+echo "Testing Thumbprints"
+node bin/eckles.js ./fixtures/privkey-ec-p256.sec1.pem thumbprint
+node bin/eckles.js ./fixtures/pub-ec-p256.jwk.json thumbprint
+echo "PASS"
+
 rm *.2
 
 

@@ -39,7 +39,16 @@ try {
   // ignore
 }
 
+var thumbprint = ('thumbprint' === format);
+if (thumbprint) {
+  format = 'public';
+}
+
 if ('string' === typeof key) {
+  if (thumbprint) {
+    Eckles.thumbprint({ pem: key }).then(console.log);
+    return;
+  }
   var pub = (-1 !== [ 'public', 'spki', 'pkix' ].indexOf(format));
   Eckles.import({ pem: key, public: (pub || format) }).then(function (jwk) {
     console.log(JSON.stringify(jwk, null, 2));
@@ -48,6 +57,10 @@ if ('string' === typeof key) {
     process.exit(1);
   });
 } else {
+  if (thumbprint) {
+    Eckles.thumbprint({ jwk: key }).then(console.log);
+    return;
+  }
   Eckles.export({ jwk: key, format: format }).then(function (pem) {
     console.log(pem);
   }).catch(function (err) {
