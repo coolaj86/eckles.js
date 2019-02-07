@@ -1,7 +1,7 @@
 [Eckles.js](https://git.coolaj86.com/coolaj86/eckles.js)
 =========
 
-Sponsored by [Root](https://therootcompany.com).
+A [Root](https://therootcompany.com) Project.
 Built for [ACME.js](https://git.coolaj86.com/coolaj86/acme.js)
 and [Greenlock.js](https://git.coolaj86.com/coolaj86/greenlock.js)
 
